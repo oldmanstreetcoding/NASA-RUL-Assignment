@@ -1,18 +1,12 @@
-from data_collection_preprocess import load_and_preprocess_data
+# Import necessary functions
+from data_loading_preprocessing import load_and_preprocess_data
+from model_building import build_and_train_model
 
-# Define file paths
+# Load and preprocess the data
 PM_train = 'CMAPSSData/train_FD001.txt'
 PM_test = 'CMAPSSData/test_FD001.txt'
 PM_truth = 'CMAPSSData/RUL_FD001.txt'
-
-# Load and preprocess the data
 train_df, test_df = load_and_preprocess_data(PM_train, PM_test, PM_truth)
 
-# Display the first few rows of the processed data
-print("Training Data Sample:")
-print(train_df.head())
-
-print("\nTest Data Sample:")
-print(test_df.head())
-
-# Proceed with further analysis or model building using train_df and test_df
+# Build and train the initial model
+model, history = build_and_train_model(train_df)

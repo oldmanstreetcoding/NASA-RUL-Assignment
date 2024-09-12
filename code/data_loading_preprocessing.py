@@ -22,6 +22,7 @@ def load_and_preprocess_data(train_path, test_path, truth_path):
     """
 
     # Read training data - Aircraft engine run-to-failure data
+    # The data are provided as text files with 26 columns of numbers, separated by spaces
     train_df = pd.read_csv(train_path, sep=' ', header=None) # Read the txt file, use appropriate separator and header
     train_df.drop([26, 27], axis=1, inplace=True)  # Explore the data on your own and remove unnecessary columns
     train_df.columns = ['id', 'cycle', 'setting1', 'setting2', 'setting3'] + [f'sensor{i}' for i in range(1, 22)]  # Assign names to all the columns
@@ -77,19 +78,21 @@ def load_and_preprocess_data(train_path, test_path, truth_path):
     # TODO: Initialize a MinMaxScaler object to scale values between 0 and 1
     min_max_scaler = MinMaxScaler()  # Replace with the correct scaler initialization code
     # TODO: Apply MinMaxScaler to the selected columns and create a new normalized DataFrame
-    norm_train_df = pd.DataFrame(min_max_scaler.fit_transform(train_df[cols_normalize]), columns=cols_normalize, index=train_df.index)  # Replace with the correct normalization code
+    norm_train_df = pd.DataFrame(min_max_scaler.fit_transform(train_df[cols_normalize]), columns=cols_normalize)  # Replace with the correct normalization code
     # TODO: Join the normalized DataFrame with the original DataFrame (excluding normalized columns)
     join_df = train_df[['id', 'cycle', 'cycle_norm', 'RUL', 'label1', 'label2']].join(norm_train_df)  # Replace with the correct join code
     # TODO: Reorder the columns in the joined DataFrame to match the original order
-    train_df = join_df.reindex(columns=['id', 'cycle', 'cycle_norm', 'RUL', 'label1', 'label2'] + list(cols_normalize))  # Replace with the correct reindexing code
+    # train_df = join_df.reindex(columns=['id', 'cycle', 'cycle_norm', 'RUL', 'label1', 'label2'] + list(cols_normalize))  # Replace with the correct reindexing code
+    train_df = join_df.reindex(columns=['id', 'cycle', 'setting1', 'setting2', 'setting3'] + [f'sensor{i}' for i in range(1, 22)] + ['RUL', 'label1', 'label2', 'cycle_norm'])
 
     ######
     # TEST
     ######
     # MinMax normalization (from 0 to 1)
     # TODO: Similar to the MinMax normalization done for Train, complete the code below.
+
     test_df['cycle_norm'] = (test_df['cycle'] - test_df['cycle'].min()) / (test_df['cycle'].max() - test_df['cycle'].min())
-    norm_test_df = pd.DataFrame(min_max_scaler.transform(test_df[cols_normalize]), columns=cols_normalize, index=test_df.index)
+    norm_test_df = pd.DataFrame(min_max_scaler.fit_transform(test_df[cols_normalize]), columns=cols_normalize)
     test_join_df = test_df[['id', 'cycle', 'cycle_norm']].join(norm_test_df)
     test_df = test_join_df.reindex(columns=['id', 'cycle', 'cycle_norm'] + list(cols_normalize))
     # test_df = NotImplemented
