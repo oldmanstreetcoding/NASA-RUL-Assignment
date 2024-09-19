@@ -29,8 +29,8 @@ def execute_hyperparameter_search(sequence_array, label_array, fd, best_model_ls
     # Define the grid of hyperparameters to search over
     param_grid = {
         'model_type': ['LSTM', 'GRU'],
-        'units': [32, 50, 64, 100], # Different numbers of units per layer
-        'dropout_rate': [0.1, 0.2, 0.3, 0.4], # Dropout rates to prevent overfitting
+        'units': [32, 50, 64], # Different numbers of units per layer
+        'dropout_rate': [0.1, 0.2, 0.3], # Dropout rates to prevent overfitting
         'batch_size': [16, 32, 64], # Batch sizes for training
         'optimizer': ['adam', 'rmsprop'] # Different optimizers
     }
