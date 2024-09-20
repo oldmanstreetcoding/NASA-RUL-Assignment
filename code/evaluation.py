@@ -69,7 +69,6 @@ def evaluate_model_performance(history, model, model_type, sequence_array, label
     print('>> Confusion matrix:')
     cm = confusion_matrix(y_true, y_pred)
     print(cm)
-    print('')
 
     return scores, precision, recall, f1
 

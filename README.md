@@ -51,7 +51,7 @@ The dataset contains 26 columns for each operational cycle snapshot:
 ---
 
 ## Project Structure
-For the project submission, we didn't include the code/data and code/model folders in this repository. Please add them manually after downloading or cloning the repo.
+For the project submission, we didn't include the data/csv and data/model folders in this repository. Please add them manually after downloading or cloning the repo.
 
 ```
 NASA-RUL-Assignment/
@@ -67,7 +67,7 @@ NASA-RUL-Assignment/
 │   │   ├── RUL_FD001.txt               # Ground truth RUL for FD001
 │   │   ├── train_FD002.txt             # Training data for FD002
 │   │   └── ...                         # Other dataset files
-│   ├── models/                         # Trained LSTM/GRU models
+│   ├── model/                         # Trained LSTM/GRU models
 │   │   └── FD001_the_best_lstm.keras   # Best LSTM model for FD001
 │   ├── requirements.txt                # List of Python dependencies
 ├── report_rul.pdf                      # Final report document
@@ -110,7 +110,7 @@ Select Which Dataset You Want to Load:
 10. Exit
 == Turbofan Engine Maintenance Predictor ==
 
-Enter your choice (1/2/3/4/5/6/7):
+Enter your choice (1-10):
 ```
 Notes:
 - Option 1: FD001 with static parameters
@@ -122,7 +122,7 @@ Notes:
 - Option 7: Evaluate the pre-trained Best Model for FD001
 - Option 8: Evaluate the pre-trained Best Model for FD002
 - Option 9: Evaluate the pre-trained Best Models for Both datasets
-- Option 10: exit the program
+- Option 10: Exit the program
 
 ### 4. Train the Model
 If you choose an option with tuning, the system will run a hyperparameter search for LSTM and GRU models and display the training progress. For example:
@@ -138,6 +138,7 @@ Time spent training LSTM model for dataset FD001: 6.26 minutes
 ### 5. Check the Results
 Once the training completes, you can view the results:
 - **CSV Files**: Check prediction results in `data/csv/` (e.g., `data/csv/FD001_predictions_lstm.csv`).
+- **Modle Files**: The Best Model for LSTM and GRU in `data/model/` (e.g., `data/model/FD001_the_best_lstm.keras.csv`).
 - **Visualizations**: View performance plots in the `visualizations/` folder (e.g., accuracy and loss plots for each model).
 
 ---
@@ -187,6 +188,11 @@ Dataset Model_Type  Units  Dropout_Rate  Batch_Size Optimizer  Train_Accuracy  V
 
 [108 rows x 10 columns]
 
+Best LSTM model for FD001 saved with validation accuracy: 98.24% and accuracy gap: 0.10%
+Best GRU model for FD001 saved with validation accuracy: 98.40% and accuracy gap: 0.05%
+
+Hyperparameter tuning complete for FD001. Results saved to 'data/csv/FD001_hyperparameter_results.csv'.
+
 Model Performance on Training Data for The Best LSTM Model in FD001
 >> Accuracy : 98.80%   
 >> Precision (LSTM) = 98.08% 
@@ -195,6 +201,17 @@ Model Performance on Training Data for The Best LSTM Model in FD001
 >> Confusion matrix:
 [[12473    58]
  [  130  2970]]
+
+Evaluating models for FD001 dataset...
+
+Model Performance on Test Data for The Best LSTM Model in FD001
+>> Accuracy: 95.70%
+>> Precision (LSTM) = 100.00%
+>> Recall (LSTM) = 84.00%
+>> F1-score (LSTM) = 91.30%
+>> Confusion matrix:
+[[68  0]
+ [ 4 21]]
 
 Accuracy  Precision  Recall  F1-score
 LSTM                 0.956989   1.000000    0.84  0.913043
