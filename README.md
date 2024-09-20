@@ -98,12 +98,15 @@ Upon running the script, you'll be presented with a menu to select the dataset a
 == Turbofan Engine Maintenance Predictor ==
 Select Which Dataset You Want to Load:
 1. FD001
-2. FD001 + Tuning
+2. FD001 << Tuning
 3. FD002
-4. FD002 + Tuning
+4. FD002 << Tuning
 5. FD001 & FD002
-6. FD001 & FD002 + Tuning
-7. Exit
+6. FD001 & FD002 << Tuning
+7. FD001 << Evaluate (Pre-trained)
+8. FD002 << Evaluate (Pre-trained)
+9. FD001 & FD002 << Evaluate (Pre-trained)
+10. Exit
 == Turbofan Engine Maintenance Predictor ==
 
 Enter your choice (1/2/3/4/5/6/7):
@@ -156,6 +159,35 @@ The models are evaluated on both training and testing datasets, with comparison 
 >> Precision (LSTM) = 98.12% 
 >> Recall (LSTM) = 96.50%
 >> F1-score (LSTM) = 97.30%
+
+Dataset Model_Type  Units  Dropout_Rate  Batch_Size Optimizer  Train_Accuracy  Val_Accuracy  Accuracy_Gap  Train_Time
+67    FD001        GRU     50           0.3          32      adam        0.983525      0.984010      0.000485    2.586073
+83    FD001        GRU     64           0.1          64   rmsprop        0.982646      0.984010      0.001365    3.213751
+68    FD001        GRU     64           0.3          32      adam        0.984805      0.983371      0.001434    2.978215
+44    FD001        GRU     64           0.1          32      adam        0.984725      0.983051      0.001674    7.248248
+95    FD001        GRU     64           0.2          64   rmsprop        0.981126      0.982731      0.001605    3.091439
+..      ...        ...    ...           ...         ...       ...             ...           ...           ...         ...
+0     FD001       LSTM     32           0.1          16      adam        0.984965      0.966741      0.018224    4.939663
+100   FD001       LSTM     50           0.3          64   rmsprop        0.982885      0.965782      0.017104    2.091014
+29    FD001       LSTM     64           0.3          16   rmsprop        0.981526      0.961625      0.019901    3.549675
+41    FD001       LSTM     64           0.1          32   rmsprop        0.982086      0.959066      0.023019    2.949606
+17    FD001       LSTM     64           0.2          16   rmsprop        0.982566      0.958427      0.024139    5.244556
+
+[108 rows x 10 columns]
+
+Model Performance on Training Data for The Best LSTM Model in FD001
+>> Accuracy : 98.80%   
+>> Precision (LSTM) = 98.08% 
+>> Recall (LSTM) = 95.81%
+>> F1-score (LSTM) = 96.93%
+>> Confusion matrix:
+[[12473    58]
+ [  130  2970]]
+
+Accuracy  Precision  Recall  F1-score
+LSTM                 0.956989   1.000000    0.84  0.913043
+GRU                  0.946237   0.954545    0.84  0.893617
+Template Best Model  0.940000   0.952381    0.80  0.869565
 ```
 
 ---
