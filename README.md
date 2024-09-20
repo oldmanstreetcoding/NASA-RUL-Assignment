@@ -51,6 +51,7 @@ The dataset contains 26 columns for each operational cycle snapshot:
 ---
 
 ## Project Structure
+For the project submission, we didn't include the code/data and code/model folders in this repository. Please add them manually after downloading or cloning the repo.
 
 ```
 NASA-RUL-Assignment/
@@ -111,6 +112,17 @@ Select Which Dataset You Want to Load:
 
 Enter your choice (1/2/3/4/5/6/7):
 ```
+Notes:
+- Option 1: FD001 with static parameters
+- Option 2: FD001 with hyperparameter tuning
+- Option 3: FD002 with static parameters
+- Option 4: FD002 with hyperparameter tuning
+- Option 5: Both datasets with static parameters
+- Option 6: Both datasets with hyperparameter tuning
+- Option 7: Evaluate the pre-trained Best Model for FD001
+- Option 8: Evaluate the pre-trained Best Model for FD002
+- Option 9: Evaluate the pre-trained Best Models for Both datasets
+- Option 10: exit the program
 
 ### 4. Train the Model
 If you choose an option with tuning, the system will run a hyperparameter search for LSTM and GRU models and display the training progress. For example:
