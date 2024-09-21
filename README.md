@@ -202,21 +202,6 @@ Model Performance on Training Data for The Best LSTM Model in FD001
 [[12473    58]
  [  130  2970]]
 
-Evaluating models for FD001 dataset...
-
-Model Performance on Test Data for The Best LSTM Model in FD001
->> Accuracy: 95.70%
->> Precision (LSTM) = 100.00%
->> Recall (LSTM) = 84.00%
->> F1-score (LSTM) = 91.30%
->> Confusion matrix:
-[[68  0]
- [ 4 21]]
-
-Accuracy  Precision  Recall  F1-score
-LSTM                 0.956989   1.000000    0.84  0.913043
-GRU                  0.946237   0.954545    0.84  0.893617
-Template Best Model  0.940000   0.952381    0.80  0.869565
 ```
 
 ---

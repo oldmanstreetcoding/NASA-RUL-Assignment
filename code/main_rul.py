@@ -152,9 +152,9 @@ def main():
         print('')
 
         # Save the DataFrame to a CSV file
-        csv_output_path = f'data/csv/results_{fd}.csv'  # Define a file path
+        csv_output_path = f'data/csv/{fd}_model_performance.csv'  # Define a file path
         results_df.to_csv(csv_output_path, index=True)
-        print(f"Comparison Results saved to {csv_output_path}\n")
+        print(f"Model Performance to {csv_output_path}\n")
 
         # Plot the comparison of LSTM and GRU model performance
         evaluate_comparison_plot(results_df, fd)
